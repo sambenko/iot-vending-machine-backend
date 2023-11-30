@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { runSample } from "./mqtt/mqttClient";
+import { runSample } from "./src/mqtt/mqttClient";
 
 
 async function main() {
