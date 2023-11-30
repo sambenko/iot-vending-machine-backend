@@ -1,3 +1,6 @@
 node_modules/
 .env
 .DS_Store # if using macOS
+dist/
+src/mqtt/secrets/*
+*.db
