@@ -1,0 +1,27 @@
+{
+  "name": "iot-vending-machine-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./dist/index.js",
+    "dev": "ts-node-dev --respawn src/index.ts"
+  },  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sambenko/iot-vending-machine-backend.git"
+  },
+  "author": "Samuel Benko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sambenko/iot-vending-machine-backend/issues"
+  },
+  "homepage": "https://github.com/sambenko/iot-vending-machine-backend#readme",
+  "dependencies": {
+    "aws-iot-device-sdk-v2": "^1.17.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.2"
+  }
+}
