@@ -1,18 +1,27 @@
 import { Request, Response } from 'express';
 import { InventoryModel } from '../../models/inventoryModel';
+import { InventoryItem } from '../types/inventoryItem';
 
 const inventoryModel = new InventoryModel();
 
 export const getInventoryByDevice = async (req: Request, res: Response) => {
     try {
-        const deviceId = req.params.deviceId; // Ensure deviceId is passed as a URL parameter
+        const deviceId = req.params.deviceId;
         const inventory = await inventoryModel.getInventoryByDevice(deviceId);
-        res.status(200).json(inventory);
+        const latestInventory = getLatestEntries<InventoryItem>(inventory, 'itemName');
+        res.status(200).json(latestInventory);
     } catch (error) {
-        if (error instanceof Error) {
-            res.status(500).json({ message: error.message });
-        } else {
-            res.status(500).json({ message: "An unknown error occurred" });
-        }
+        // Error handling
     }
 };
+
+function getLatestEntries<T>(dataArray: T[], typeKey: keyof T): T[] {
+    const latestEntriesMap = new Map<string, T>();
+
+    dataArray.forEach(item => {
+        const key = item[typeKey] as unknown as string;
+        latestEntriesMap.set(key, item);
+    });
+
+    return Array.from(latestEntriesMap.values());
+}
